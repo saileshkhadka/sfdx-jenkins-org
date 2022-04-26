@@ -29,7 +29,7 @@ node {
 
  	withEnv(["HOME=${env.WORKSPACE}"]) {	
 	
-	    withCredentials([file(credentialsId: SSH_KEY, variable: 'server_key_file')]) {
+	    withCredentials([file(credentialsId: userpwd, variable: 'server_key_file')]) {
 		// -------------------------------------------------------------------------
 		// Authenticate to Salesforce using the server key.
 		// -------------------------------------------------------------------------
@@ -58,12 +58,12 @@ node {
 		// Example shows how to run a check-only deploy.
 		// -------------------------------------------------------------------------
 
-		//stage('Check Only Deploy') {
-		//    rc = command "${toolbelt}/sfdx force:mdapi:deploy --checkonly --wait 10 --deploydir ${DEPLOYDIR} --targetusername UAT --testlevel ${TEST_LEVEL}"
-		//    if (rc != 0) {
-		//        error 'Salesforce deploy failed.'
-		//    }
-		//}
+		stage('Check Only Deploy') {
+		    rc = command "${toolbelt}/sfdx force:mdapi:deploy --checkonly --wait 10 --deploydir ${DEPLOYDIR} --targetusername UAT --testlevel ${TEST_LEVEL}"
+		    if (rc != 0) {
+		        error 'Salesforce deploy failed.'
+		    }
+		}
 	    }
 	}
 }
