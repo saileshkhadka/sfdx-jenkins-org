@@ -11,7 +11,11 @@ node {
 
 
     def toolbelt = tool 'toolbelt'
-
+    
+    println 'keyname'	
+    println SF_USERNAME
+    println SF_CONSUMER_KEY
+    println SERVER_KEY_CREDENTIALS_ID
 
     // -------------------------------------------------------------------------
     // Check out code from source control.
